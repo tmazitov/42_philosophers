@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 18:10:00 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/02/14 17:52:03 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/02/14 18:01:48 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "fork.h"
 
-# include "./utils/utils.h"
-# include "./person/person.h"
-# include "./fork/fork.h"
-
-typedef struct s_state
+t_fork	*make_fork(int id)
 {
-	t_fork_storage		*forks;
-	t_person_storage	*persons;
-}		t_state;
+	t_fork	*fork;
 
+	fork = malloc(sizeof(t_fork));
+	if (!fork)
+		return (NULL);
+	fork->id = id;
+	return (fork);
+}
 
-int		validate(int ac, char **av);
-t_state	*make_state();
-void	*free_state(t_state *state);
-
-
-#endif
+void	*free_fork(t_fork *fork)
+{
+	if (!fork)
+		return (NULL);
+	free(fork);
+	return (fork);
+}
