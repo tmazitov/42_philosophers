@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 18:09:29 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:42:21 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ t_person_storage	*make_person_storage(int amount)
 	if (!storage->persons)
 		return (free_person_storage(storage));
 	counter = 0;
-	while (storage->persons[counter])
+	while (counter < amount)
 	{
-		storage->persons[counter] = make_person(counter);
+		storage->persons[counter] = make_person(counter + 1);
 		if (!storage->persons[counter])
 			return (free_person_storage(storage));
 		counter++;

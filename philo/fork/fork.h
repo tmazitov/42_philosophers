@@ -6,12 +6,14 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 18:01:59 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:13:03 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORK_H
 # define FORK_H
+
+# include <stdio.h>
 
 # include "stdlib.h"
 
@@ -35,5 +37,5 @@ void			*free_fork_storage(t_fork_storage *storage);
 
 t_fork	*make_fork(int id);
 void	*free_fork(t_fork *fork);
-
+void	print_fork(t_fork *fork);
 #endif

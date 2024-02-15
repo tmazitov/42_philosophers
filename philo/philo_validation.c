@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:22:37 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 14:31:08 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:37:42 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_number(char *str)
 	counter = 0;
 	while (str[counter]) 
 	{
-		if ('0' < str[counter] || '9' > str[counter])
+		if (!ft_isdigit(str[counter]))
 			return (0);
 		counter++;
 	}
@@ -34,6 +34,7 @@ int	validate(int ac, char **av)
 	if (ac != 5)
 		return (0);
 	arguments = av + 1;
+	counter = 0;
 	while (arguments[counter])
 	{
 		if (!check_number(arguments[counter]))

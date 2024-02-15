@@ -6,12 +6,14 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 18:10:00 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:21:44 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# include <stdio.h>
 
 # include "./utils/utils.h"
 # include "./person/person.h"
@@ -19,14 +21,20 @@
 
 typedef struct s_state
 {
+	int	philo_amount;
+	int time_to_die;
+	int time_to_eat;
+	int time_to_sleep;
+	int eat_count;
+
 	t_fork_storage		*forks;
 	t_person_storage	*persons;
 }		t_state;
 
 
 int		validate(int ac, char **av);
-t_state	*make_state();
+t_state	*make_state(char **av);
 void	*free_state(t_state *state);
-
+void	print_state(t_state *state);
 
 #endif
