@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:49:30 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 16:10:21 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:28:55 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ t_state	*make_state(char **av)
 	state->persons = make_person_storage(state->philo_amount);
 	if (!state->persons)
 		return (free_state(state));
-	set_time(state->persons, (t_person_time){
-		eat_dur: state->time_to_eat,
-		eat_limit: state->eat_limit,
-		sleep_dur: state->time_to_sleep,
-		die_time: state->time_to_die,
-	});
 	set_forks(state->persons, state->forks);
 	return (state);
 }

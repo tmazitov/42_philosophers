@@ -3,7 +3,7 @@ NAME := philo
 GREEN := \033[0;32m
 NC := \033[0m
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -fsanitize=thread
 
 SRCS := philo.c \
 		philo_state.c \

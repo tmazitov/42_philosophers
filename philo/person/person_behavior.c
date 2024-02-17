@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:02:13 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 16:34:14 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:31:58 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static t_person	*person_eat(t_person *person, t_fork_storage *forks)
 {
+	t_fork_pair	pair;
+
 	print_person_state(person, EATING);
 	printf("eat time %d\n", person->last_eat);
 	ft_usleep(person->eat_dur);
-	fs_put_pair(forks, (t_fork_pair){
-		left: person->left_fork,
-		right: person->right_fork,
-	});
+	pair.left = person->left_fork;
+	pair.right = person->right_fork;
+	fs_put_pair(forks, pair);
 	printf("\t put forks : %d %d\n", person->left_fork->id, person->right_fork->id);
 	person->left_fork = NULL;
 	person->right_fork = NULL;
