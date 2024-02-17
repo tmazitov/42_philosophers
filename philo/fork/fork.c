@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:52:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/14 18:01:48 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 11:48:14 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_fork	*make_fork(int id)
 	if (!fork)
 		return (NULL);
 	fork->id = id;
+	fork->free = true;
 	return (fork);
 }
 

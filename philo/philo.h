@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 13:21:44 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:50:36 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <stdio.h>
+# include <pthread.h>
 
 # include "./utils/utils.h"
 # include "./person/person.h"
@@ -25,7 +26,7 @@ typedef struct s_state
 	int time_to_die;
 	int time_to_eat;
 	int time_to_sleep;
-	int eat_count;
+	int eat_limit;
 
 	t_fork_storage		*forks;
 	t_person_storage	*persons;

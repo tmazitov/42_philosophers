@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 12:45:50 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:56:39 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_fork_storage	*make_fork_storage(int amount)
  		counter++;
 	}
 	storage->forks[counter] = NULL;
+	storage->free_amount = amount;
 	return (storage);
 }
 
