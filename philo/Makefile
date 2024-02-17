@@ -27,6 +27,7 @@ SRCS := philo.c \
 		utils/ft_strchr.c \
 		utils/ft_isdigit.c \
 		utils/ft_strlen.c \
+		utils/ft_usleep.c \
 
 
 OBJS := $(SRCS:.c=.o)

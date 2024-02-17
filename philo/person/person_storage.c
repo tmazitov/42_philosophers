@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 14:47:19 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:49:58 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_person_storage	*make_person_storage(int amount)
 	}
 	storage->persons[counter] = NULL;
 	storage->dead_log = false;
+	storage->start = get_current_time();
 	return (storage);
 }
 

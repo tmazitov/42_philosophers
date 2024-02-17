@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 14:48:26 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:49:36 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_person_storage
 	bool			locker_is_created;
 	bool			locker_is_enabled;
 	bool			dead_log;
+	long long		start;
 }		t_person_storage;
 
 // Person

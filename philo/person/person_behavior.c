@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:02:13 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:53:08 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:34:14 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_person	*person_eat(t_person *person, t_fork_storage *forks)
 {
 	print_person_state(person, EATING);
 	printf("eat time %d\n", person->last_eat);
-	usleep(person->eat_dur);
+	ft_usleep(person->eat_dur);
 	fs_put_pair(forks, (t_fork_pair){
 		left: person->left_fork,
 		right: person->right_fork,
@@ -32,7 +32,7 @@ static t_person	*person_eat(t_person *person, t_fork_storage *forks)
 static t_person	*person_sleep(t_person *person)
 {
 	print_person_state(person, SLEEPING);
-	usleep(person->sleep_dur);
+	ft_usleep(person->sleep_dur);
 	person->last_eat += person->sleep_dur;
 	if (person->last_eat >= person->die_time)
 		return (person);
@@ -64,7 +64,7 @@ static t_person	*person_think(t_person *person, t_fork_storage *forks)
 		if (person->left_fork && person->right_fork)
 			break ;
 		person->last_eat += 10;
-		usleep(10);
+		ft_usleep(10);
 	}
 	if (person->last_eat >= person->die_time)
 		return (person);

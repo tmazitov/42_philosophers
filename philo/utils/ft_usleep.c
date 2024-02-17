@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 14:34:07 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 16:36:46 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/02/17 16:31:55 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/02/17 16:32:38 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
+size_t	get_current_time(void)
+{
+	struct timeval	time;
 
-typedef enum { false, true } bool;
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
-size_t	ft_strlen(char *str);
-int		ft_atoi(char *str);
-int		ft_isdigit(int ch);
-char	*ft_itoa(int n);
-char	*ft_strchr(char *str, int ch);
-int		ft_strcmp(char *str1, char *str2);
-int		ft_usleep(size_t milliseconds);
-size_t	get_current_time(void);
-#endif
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
+

@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:09:05 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:14:56 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:59:05 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	print_person(t_person *person)
 
 void	print_person_state(t_person *person, t_person_state state)
 {
-	struct timeval	current_time;
 	char			*message;
+	long long		time;
+	t_person_storage	*storage;
 
 	if (state == SLEEPING)
 		message = "sleeping";
@@ -35,6 +36,7 @@ void	print_person_state(t_person *person, t_person_state state)
 	else
 		return ;
 
-  	gettimeofday(&current_time, NULL);
-	printf("%ld %d is %s\n", current_time.tv_usec, person->id, message);
+	storage = (t_person_storage *)person->storage;
+	time = get_current_time() - storage->start - 1;
+	printf("%lli %d is %s\n", time, person->id, message);
 }

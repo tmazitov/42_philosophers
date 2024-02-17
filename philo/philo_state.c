@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:49:30 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 12:50:38 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:10:21 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_state	*make_state(char **av)
 	state = malloc(sizeof(t_state));
 	if (!state)
 		return (NULL);
+	state->forks = NULL;
+	state->persons = NULL;
 	if (fill_state(state, av))
 		return (free_state(state));
 	state->forks = make_fork_storage(state->philo_amount);
