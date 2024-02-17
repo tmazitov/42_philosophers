@@ -14,6 +14,7 @@ SRCS := philo.c \
 		fork/fork_storage.c \
 		person/person.c \
 		person/person_utils.c \
+		person/person_behavior.c \
 		person/person_storage.c \
 		utils/ft_atoi.c \
 		utils/ft_itoa.c \

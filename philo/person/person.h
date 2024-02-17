@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 13:11:38 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:06:07 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct s_person_storage
 t_person	*make_person(int id);
 void		*free_person(t_person *person);
 void		print_person(t_person *person);
+
+void		person_eat(t_person *person);
+void		person_sleep(t_person *person);
+void		person_think(t_person *person);
 
 t_person_storage	*make_person_storage(int amount);
 void				*free_person_storage(t_person_storage *storage);
