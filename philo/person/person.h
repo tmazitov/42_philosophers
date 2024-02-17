@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 12:33:13 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:48:26 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,27 @@ typedef struct s_person_time
 
 typedef struct s_person
 {
-	int			id;
-	pthread_t	thread_id;
-	t_fork		*left_fork;
-	t_fork		*right_fork;
-	int			eat_dur;
-	int			sleep_dur;
-	int			die_time;
-	int			last_eat;
-	int			eat_count;
-	int			eat_limit;
+	int				id;
+	pthread_t		thread_id;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
+	int				eat_dur;
+	int				sleep_dur;
+	int				die_time;
+	int				last_eat;
+	int				eat_count;
+	int				eat_limit;
 	t_fork_storage	*fork_storage;
+	void 			*storage;
 }		t_person;
 
 typedef struct s_person_storage
 {
-	t_person	**persons;
+	t_person		**persons;
+	pthread_mutex_t	locker;
+	bool			locker_is_created;
+	bool			locker_is_enabled;
+	bool			dead_log;
 }		t_person_storage;
 
 // Person
@@ -75,5 +80,10 @@ void		*person_behavior(void *data);
 
 t_person_storage	*make_person_storage(int amount);
 void				*free_person_storage(t_person_storage *storage);
+
+void	ps_death_set(t_person *person);
+bool	ps_death_check(t_person	*person);
+void	ps_lock(t_person_storage *storage);
+void	ps_unlock(t_person_storage *storage);
 
 #endif

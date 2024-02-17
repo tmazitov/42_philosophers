@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:03:30 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 13:41:47 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:39:21 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_state(t_state *state)
 	printf("\ttime to eat: %d\n", state->time_to_eat);	
 	printf("\ttime to die: %d\n", state->time_to_die);	
 	printf("\ttime to sleep: %d\n", state->time_to_sleep);
-	printf("\tamount to eat: %d\n", state->eat_count);
+	printf("\tamount to eat: %d\n", state->eat_limit);
 	counter = 0;
 	printf("\tphilosophers:\n");
 	while (state->forks->forks[counter])

@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:41:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 12:21:31 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:56:35 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_person	*make_person(int id)
 	person->last_eat = 0;
 	person->eat_count = 0;
 	person->eat_limit = -1;
+	person->storage = NULL;
 	return (person);
 }
 

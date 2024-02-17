@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 11:59:57 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:03:22 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 
 # include "../utils/utils.h"
 
@@ -24,18 +25,31 @@ typedef struct s_fork
 	bool	free;
 }		t_fork;
 
+typedef struct s_fork_pair {
+	t_fork	*left;
+	t_fork	*right;
+}		t_fork_pair;
+
 typedef struct s_fork_storage 
 {
-	t_fork **forks;
-	int		amount;
-	int		free_amount;
+	t_fork 			**forks;
+	int				amount;
+	int				free_amount;
+	pthread_mutex_t	locker;
+	bool			locker_is_created;
+	bool			locker_is_enabled;
 }		t_fork_storage;
 
 // Fork storage
 
 t_fork_storage	*make_fork_storage(int amount);
 void			*free_fork_storage(t_fork_storage *storage);
-bool			check_free_forks(t_fork_storage *storage);
+
+bool			fs_check_free_forks(t_fork_storage *storage);
+t_fork_pair		fs_take_pair(t_fork_storage *storage);
+void			fs_put_pair(t_fork_storage *storage, t_fork_pair pair);
+void			fs_lock(t_fork_storage *storage);
+void			fs_unlock(t_fork_storage *storage);
 
 
 // Fork

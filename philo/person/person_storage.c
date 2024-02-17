@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 12:25:35 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:47:19 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ t_person_storage	*make_person_storage(int amount)
 	storage = malloc(sizeof(t_person_storage));
 	if (!storage)
 		return (NULL);
+	storage->locker_is_created = false;
+	if (pthread_mutex_init(&storage->locker, NULL) != 0)
+		return (free_person_storage(storage));
+	storage->locker_is_created = true;
+	storage->locker_is_enabled = false;
 	storage->persons = malloc(sizeof(t_person *) * (amount + 1));
 	if (!storage->persons)
 		return (free_person_storage(storage));
@@ -29,9 +34,11 @@ t_person_storage	*make_person_storage(int amount)
 		storage->persons[counter] = make_person(counter + 1);
 		if (!storage->persons[counter])
 			return (free_person_storage(storage));
+		storage->persons[counter]->storage = storage;
 		counter++;
 	}
 	storage->persons[counter] = NULL;
+	storage->dead_log = false;
 	return (storage);
 }
 

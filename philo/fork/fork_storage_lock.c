@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_storage_check.c                               :+:      :+:    :+:   */
+/*   fork_storage_lock.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 11:48:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:24:48 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/02/17 14:59:07 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/02/17 15:48:51 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fork.h"
 
-bool	fs_check_free_forks(t_fork_storage *storage)
+void	fs_lock(t_fork_storage *storage)
 {
-	int		amount;
-	bool	result;
+	pthread_mutex_lock(&storage->locker);
+	storage->locker_is_enabled = true;
+}
 
-	amount = storage->free_amount;
-	result = (bool)(amount >= 2);
-	return (result);
+void	fs_unlock(t_fork_storage *storage)
+{
+	pthread_mutex_unlock(&storage->locker);
+	storage->locker_is_enabled = false;
 }
