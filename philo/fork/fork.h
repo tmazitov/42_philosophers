@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:03:22 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:33:27 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ t_fork_storage	*make_fork_storage(int amount);
 void			*free_fork_storage(t_fork_storage *storage);
 
 bool			fs_check_free_forks(t_fork_storage *storage);
-t_fork_pair		fs_take_pair(t_fork_storage *storage);
 void			fs_put_pair(t_fork_storage *storage, t_fork_pair pair);
 void			fs_lock(t_fork_storage *storage);
 void			fs_unlock(t_fork_storage *storage);
+t_fork			*fs_take_fork(t_fork_storage *storage);
 
 
 // Fork

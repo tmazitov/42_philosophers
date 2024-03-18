@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:41:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 19:31:06 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:45:34 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_person	*make_person(int id)
 	if (!person)
 		return (NULL);
 	person->id = id;
-	person->thread_id = NULL;
 	person->left_fork = NULL;
 	person->right_fork = NULL;
 	person->eat_dur = 0;

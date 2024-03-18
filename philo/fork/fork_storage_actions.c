@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 12:58:50 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:44:31 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:32:50 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,22 @@ static void		put_fork(t_fork_storage *storage, t_fork *fork)
 	storage->free_amount += 1;
 }
 
-t_fork_pair	fs_take_pair(t_fork_storage *storage)
+t_fork	*fs_take_fork(t_fork_storage *storage) 
 {
-	t_fork_pair	pair;
-	t_fork		**forks;
-	int			counter;
+	t_fork	**forks;
+	int		counter;
 
-	pair.left = NULL;
-	pair.right = NULL;
 	if (fs_check_free_forks(storage) == false)
-		return (pair);
-	counter = 0;
+		return (NULL);
 	forks = storage->forks;
+	counter = 0;
 	while (forks[counter])
 	{
-		if (forks[counter]->free && !pair.left)
-			pair.left = take_fork(storage, forks[counter]);
-		else if (forks[counter]->free && !pair.right)
-			pair.right = take_fork(storage, forks[counter]);
-		if (pair.left && pair.right)
-			break ;
+		if (forks[counter]->free == true)
+			return (take_fork(storage, forks[counter]));
 		counter++;
 	}
-	return (pair);
+	return (NULL);
 }
 
 void	fs_put_pair(t_fork_storage *storage, t_fork_pair pair)

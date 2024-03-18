@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 19:30:50 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:22:46 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	panic(char *message)
 {
 	write(2, "Error : ", 8);
 	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
 	return (1);
 }
 

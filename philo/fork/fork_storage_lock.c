@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:59:07 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 15:48:51 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:06:56 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	fs_lock(t_fork_storage *storage)
 
 void	fs_unlock(t_fork_storage *storage)
 {
-	pthread_mutex_unlock(&storage->locker);
 	storage->locker_is_enabled = false;
+	pthread_mutex_unlock(&storage->locker);
 }
