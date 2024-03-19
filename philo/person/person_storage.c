@@ -6,11 +6,20 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 16:49:58 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:55:20 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "person.h"
+
+static void	init_person_storage(t_person_storage *storage)
+{
+	storage->locker_is_created = false;
+	storage->locker_is_enabled = false;
+	storage->persons = NULL;
+	storage->dead_log = false;
+	storage->start = get_current_time();
+}
 
 t_person_storage	*make_person_storage(int amount)
 {
@@ -20,11 +29,10 @@ t_person_storage	*make_person_storage(int amount)
 	storage = malloc(sizeof(t_person_storage));
 	if (!storage)
 		return (NULL);
-	storage->locker_is_created = false;
+	init_person_storage(storage);
 	if (pthread_mutex_init(&storage->locker, NULL) != 0)
 		return (free_person_storage(storage));
 	storage->locker_is_created = true;
-	storage->locker_is_enabled = false;
 	storage->persons = malloc(sizeof(t_person *) * (amount + 1));
 	if (!storage->persons)
 		return (free_person_storage(storage));
@@ -34,25 +42,24 @@ t_person_storage	*make_person_storage(int amount)
 		storage->persons[counter] = make_person(counter + 1);
 		if (!storage->persons[counter])
 			return (free_person_storage(storage));
-		storage->persons[counter]->storage = storage;
-		counter++;
+		storage->persons[counter++]->storage = storage;
 	}
 	storage->persons[counter] = NULL;
-	storage->dead_log = false;
-	storage->start = get_current_time();
 	return (storage);
 }
 
 void	*free_person_storage(t_person_storage *storage)
 {
-	int counter;
+	int	counter;
 
 	if (!storage)
 		return (NULL);
+	if (storage->locker_is_created)
+		pthread_mutex_destroy(&storage->locker);
 	if (storage->persons)
 	{
 		counter = 0;
-		while(storage->persons[counter])
+		while (storage->persons[counter])
 		{
 			free_person(storage->persons[counter]);
 			counter++;

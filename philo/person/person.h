@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/18 15:39:28 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:14:11 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../utils/utils.h"
 
 typedef enum s_person_state
-{	
+{
 	SLEEPING	= 1,
 	THINKING	= 2,
 	EATING		= 3,
@@ -39,7 +39,6 @@ typedef struct s_person_time
 	int		eat_limit;
 }		t_person_time;
 
-
 typedef struct s_person
 {
 	int				id;
@@ -53,38 +52,36 @@ typedef struct s_person
 	int				eat_count;
 	int				eat_limit;
 	t_fork_storage	*fork_storage;
-	void 			*storage;
+	void			*storage;
 }		t_person;
 
 typedef struct s_person_storage
 {
 	t_person		**persons;
 	pthread_mutex_t	locker;
-	bool			locker_is_created;
-	bool			locker_is_enabled;
-	bool			dead_log;
+	t_bool			locker_is_created;
+	t_bool			locker_is_enabled;
+	t_bool			dead_log;
 	long long		start;
 }		t_person_storage;
 
 // Person
 
-t_person	*make_person(int id);
-void		*free_person(t_person *person);
-void		print_person(t_person *person);
-void		print_person_state(t_person *person, t_person_state state);
-void		set_time(t_person_storage *storage, t_person_time time);
-void		set_forks(t_person_storage *storage, t_fork_storage *forks);
-void		*person_behavior(void *data);
-
+t_person			*make_person(int id);
+void				*free_person(t_person *person);
+void				print_person(t_person *person);
+void				print_person_state(t_person *person, t_person_state state);
+void				set_time(t_person_storage *storage, t_person_time time);
+void				set_forks(t_person_storage *storage, t_fork_storage *forks);
+void				*person_behavior(void *data);
 
 // Person Storage
 
 t_person_storage	*make_person_storage(int amount);
 void				*free_person_storage(t_person_storage *storage);
-
-void	ps_death_set(t_person *person);
-bool	ps_death_check(t_person	*person);
-void	ps_lock(t_person_storage *storage);
-void	ps_unlock(t_person_storage *storage);
+void				ps_death_set(t_person *person);
+t_bool				ps_death_check(t_person	*person);
+void				ps_lock(t_person_storage *storage);
+void				ps_unlock(t_person_storage *storage);
 
 #endif

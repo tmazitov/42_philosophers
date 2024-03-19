@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/18 17:22:46 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:55:54 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ static int	panic(char *message)
 	return (1);
 }
 
-
 static void	run_philosophers(t_state *state)
 {
 	t_person	**persons;
 	t_person	*p;
-	int 		counter;
+	int			counter;
 
 	counter = 0;
 	persons = state->persons->persons;
@@ -40,14 +39,11 @@ static void	run_philosophers(t_state *state)
 	{
 		p = persons[counter];
 		pthread_join(p->thread_id, NULL);
-		// printf("%p\n", result);
-		// printf("philo : %d\n", p->id);		
-		// printf("last eat: %d\n", p->last_eat);
 		counter++;
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_state			*state;
 	t_person_time	time;

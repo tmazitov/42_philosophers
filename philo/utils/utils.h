@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:34:07 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 16:36:46 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:13:17 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-typedef enum { false, true } bool;
+typedef enum bool
+{
+	false, 
+	true 
+}		t_bool;
 
 size_t	ft_strlen(char *str);
 int		ft_atoi(char *str);

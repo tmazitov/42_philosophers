@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/17 12:50:36 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:56:37 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@
 
 typedef struct s_state
 {
-	int	philo_amount;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int eat_limit;
-
+	int					philo_amount;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					eat_limit;
 	t_fork_storage		*forks;
 	t_person_storage	*persons;
 }		t_state;
-
 
 int		validate(int ac, char **av);
 t_state	*make_state(char **av);

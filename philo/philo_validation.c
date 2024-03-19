@@ -6,13 +6,13 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:22:37 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 13:37:42 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:10:24 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	check_number(char *str) 
+static int	check_number(char *str)
 {
 	int	counter;
 
@@ -24,7 +24,7 @@ static int	check_number(char *str)
 		counter++;
 	}
 	return (1);
-} 
+}
 
 int	validate(int ac, char **av)
 {

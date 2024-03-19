@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:49:30 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/18 13:46:21 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:56:53 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static int	check_all_num_overflow(char **nums)
 		counter++;
 	}
 	return (0);
-}	
+}
 
 static int	fill_state(t_state	*state, char **av)
 {
-	if (check_all_num_overflow(av+1))
+	if (check_all_num_overflow(av + 1))
 		return (1);
 	state->philo_amount = ft_atoi(av[1]);
 	if (state->philo_amount <= 0)

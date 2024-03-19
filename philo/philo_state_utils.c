@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:03:30 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/10 20:13:43 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:57:32 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	print_state(t_state *state)
 {
-	int counter;
-	
-	printf("Philo state: \n");	
-	printf("\ttime to eat: %d\n", state->time_to_eat);	
-	printf("\ttime to die: %d\n", state->time_to_die);	
+	int	counter;
+
+	printf("Philo state: \n");
+	printf("\ttime to eat: %d\n", state->time_to_eat);
+	printf("\ttime to die: %d\n", state->time_to_die);
 	printf("\ttime to sleep: %d\n", state->time_to_sleep);
 	printf("\tamount to eat: %d\n", state->eat_limit);
 	counter = 0;
