@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:09:05 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 12:51:07 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:44:54 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	print_person_state(t_person *person, t_person_state state)
 	else
 		return ;
 	storage = (t_person_storage *)person->storage;
+	ps_lock(storage);
 	time = get_current_time() - storage->start;
 	printf("%lli %d is %s\n", time, person->id, message);
+	ps_unlock(storage);
 }
