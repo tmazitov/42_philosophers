@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:34:07 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 13:13:17 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:46:15 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	*ft_itoa(int n);
 char	*ft_strchr(char *str, int ch);
 int		ft_strcmp(char *str1, char *str2);
 int		ft_usleep(size_t milliseconds);
-size_t	get_current_time(void);
+size_t	now(void);
+	
 #endif

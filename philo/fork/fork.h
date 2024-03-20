@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 14:44:42 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:34:59 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_bool			fs_check_fork(t_fork_storage *storage, int fork_id);
 
 // Fork
 
-t_fork	*make_fork(int id);
-void	*free_fork(t_fork *fork);
-void	fork_lock(t_fork *fork);
-void	fork_unlock(t_fork *fork);
-void	fork_print(t_fork *fork);
+t_fork			*make_fork(int id);
+void			*free_fork(t_fork *fork);
+void			fork_lock(t_fork *fork);
+void			fork_unlock(t_fork *fork);
+void			fork_print(t_fork *fork);
 #endif

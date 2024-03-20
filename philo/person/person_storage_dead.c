@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:47:42 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 14:39:55 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:54:20 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ps_death_set(t_person *person)
 	
 	storage = (t_person_storage *)person->storage;
 	storage_fork = person->fork_storage;
-	ps_lock(storage);	
 	ps_lock(storage);
 	storage->dead_log = true;
 	ps_unlock(storage);

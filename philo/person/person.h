@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 13:14:11 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:34:46 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ typedef struct s_person
 	int				eat_dur;
 	int				sleep_dur;
 	int				die_time;
+	int				created_at;
 	int				last_eat;
 	int				eat_count;
 	int				eat_limit;
+	size_t			start;
 	t_fork_storage	*fork_storage;
 	void			*storage;
 }		t_person;
@@ -70,7 +72,7 @@ typedef struct s_person_storage
 t_person			*make_person(int id);
 void				*free_person(t_person *person);
 void				print_person(t_person *person);
-void				print_person_state(t_person *person, t_person_state state);
+int					print_person_state(t_person *person, t_person_state state);
 void				set_time(t_person_storage *storage, t_person_time time);
 void				set_forks(t_person_storage *storage, t_fork_storage *forks);
 void				*person_behavior(void *data);
