@@ -6,13 +6,13 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:02:13 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 13:04:36 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:47:21 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "person.h"
 
-static t_person	*person_eat(t_person *person, t_fork_storage *forks)
+static t_person	*person_eat(t_person *person)
 {
 	t_fork_pair	pair;
 
@@ -22,7 +22,7 @@ static t_person	*person_eat(t_person *person, t_fork_storage *forks)
 	person->last_eat += person->eat_dur;
 	pair.left = person->left_fork;
 	pair.right = person->right_fork;
-	fs_put_pair(forks, pair);
+	fs_put_pair(pair);
 	person->left_fork = NULL;
 	person->right_fork = NULL;
 	person->eat_count += 1;
@@ -40,27 +40,39 @@ static t_person	*person_sleep(t_person *person)
 }
 
 static t_person	*person_think(t_person *person, t_fork_storage *forks)
-{
-	print_person_state(person, THINKING);
-	while (1)
-	{
-		if (person->last_eat >= person->die_time || ps_death_check(person))
-			break ;
-		fs_lock(forks);
-		if (fs_check_free_forks(forks))
-			print_person_state(person, TAKE_FORK);
-		if (fs_check_free_forks(forks) && !person->left_fork)
-			person->left_fork = fs_take_fork(forks);
-		else if (fs_check_free_forks(forks) && !person->right_fork)
-			person->right_fork = fs_take_fork(forks);
-		fs_unlock(forks);
-		if (person->left_fork && person->right_fork)
-			break ;
-		person->last_eat += 1;
-		ft_usleep(1);
-	}
-	if (person->last_eat >= person->die_time)
+{	
+	int			left_fork_id;
+	int			right_fork_id;
+	long long	start;
+	
+	if (forks->amount == 1)
 		return (person);
+	print_person_state(person, THINKING);
+	left_fork_id = person->id;
+	if (person->id == forks->amount)
+		right_fork_id = 1;
+	else
+		right_fork_id = person->id + 1;
+	if (forks->amount % 2 == 0 && person->id % 2 == 0)
+	{
+		right_fork_id = person->id;
+		left_fork_id = person->id - 1;
+	}
+	start = get_current_time();
+	person->left_fork = fs_take_fork(forks, left_fork_id);
+	if ((int)(get_current_time() - start) > 0)
+		person->last_eat += (int)(get_current_time() - start);
+	if (person->last_eat >= person->die_time || ps_death_check(person))
+		return (person);
+	print_person_state(person, TAKE_FORK);
+	
+	start = get_current_time();
+	person->right_fork = fs_take_fork(forks, right_fork_id);
+	if ((int)(get_current_time() - start) > 0)
+		person->last_eat += (int)(get_current_time() - start);
+	if (person->last_eat >= person->die_time || ps_death_check(person))
+		return (person);
+	print_person_state(person, TAKE_FORK);
 	return (NULL);
 }
 
@@ -95,7 +107,7 @@ void	*person_behavior(void *data)
 			break ;
 		if (person_think(person, forks) || ps_death_check(person))
 			return (person_die(person));
-		if (person_eat(person, forks) || ps_death_check(person))
+		if (person_eat(person) || ps_death_check(person))
 			return (person_die(person));
 		if (person_sleep(person) || ps_death_check(person))
 			return (person_die(person));

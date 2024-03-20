@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 13:11:17 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:46:23 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ t_fork_storage	*make_fork_storage(int amount)
 	if (!storage)
 		return (NULL);
 	storage->amount = amount;
-	storage->free_amount = amount;
-	storage->locker_is_created = false;
-	if (pthread_mutex_init(&storage->locker, NULL) != 0)
-		return (free_fork_storage(storage));
-	storage->locker_is_created = true;
-	storage->locker_is_enabled = false;
 	if (!feel_storage(storage))
 		return (free_fork_storage(storage));
 	return (storage);
@@ -56,8 +50,6 @@ void	*free_fork_storage(t_fork_storage *storage)
 
 	if (!storage)
 		return (NULL);
-	if (storage->locker_is_created)
-		pthread_mutex_destroy(&storage->locker);
 	if (storage->forks)
 	{
 		counter = 0;

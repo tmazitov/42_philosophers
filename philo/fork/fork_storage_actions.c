@@ -6,47 +6,64 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 12:58:50 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 13:06:34 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:45:55 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fork.h"
 
-static t_fork	*take_fork(t_fork_storage *storage, t_fork *fork)
+static t_fork	*take_fork(t_fork *fork)
 {
-	fork->free = false;
-	storage->free_amount -= 1;
+	fork_lock(fork);
 	return (fork);
 }
 
-static void	put_fork(t_fork_storage *storage, t_fork *fork)
+static void		put_fork(t_fork *fork)
 {
-	fork->free = true;
-	storage->free_amount += 1;
+	fork_unlock(fork);	
 }
 
-t_fork	*fs_take_fork(t_fork_storage *storage)
+t_fork	*fs_take_fork(t_fork_storage *storage, int fork_id) 
+{
+	t_fork	**forks;
+	t_fork	*result_fork;
+	int		counter;
+	
+	counter = 0;
+	if (fork_id > storage->amount || fork_id <= 0)
+		return (NULL);
+	forks = storage->forks;
+	while (forks[counter])
+	{
+		if (forks[counter]->id == fork_id)
+			result_fork = forks[counter]; 
+		counter++;
+	}
+	// printf("\twant to take %d\n", fork_id);
+	return (take_fork(result_fork));
+}
+
+void	fs_put_pair(t_fork_pair pair)
+{
+	// printf("\tput %d %d\n", pair.left->id, pair.right->id);
+	put_fork(pair.left);
+	put_fork(pair.right);
+}
+
+t_bool	fs_check_fork(t_fork_storage *storage, int fork_id)
 {
 	t_fork	**forks;
 	int		counter;
-
-	if (fs_check_free_forks(storage) == false)
-		return (NULL);
-	forks = storage->forks;
+	
 	counter = 0;
+	if (fork_id > storage->amount || fork_id <= 0)
+		return (true);
+	forks = storage->forks;
 	while (forks[counter])
 	{
-		if (forks[counter]->free == true)
-			return (take_fork(storage, forks[counter]));
+		if (forks[counter]->id == fork_id)
+			return (forks[counter]->locker_is_enabled); 
 		counter++;
 	}
-	return (NULL);
-}
-
-void	fs_put_pair(t_fork_storage *storage, t_fork_pair pair)
-{
-	fs_lock(storage);
-	put_fork(storage, pair.left);
-	put_fork(storage, pair.right);
-	fs_unlock(storage);
+	return (true);
 }

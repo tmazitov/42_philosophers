@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 12:55:54 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:47:53 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	run_philosophers(t_state *state)
 		pthread_join(p->thread_id, NULL);
 		counter++;
 	}
+	
 }
 
 int	main(int ac, char **av)

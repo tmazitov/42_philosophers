@@ -7,13 +7,11 @@ CFLAGS := -Wall -Wextra -Werror
 
 SRCS := philo.c \
 		philo_state.c \
-		philo_state_utils.c \
 		philo_validation.c \
 		fork/fork.c \
+		fork/fork_lock.c \
 		fork/fork_utils.c \
 		fork/fork_storage.c \
-		fork/fork_storage_lock.c \
-		fork/fork_storage_check.c \
 		fork/fork_storage_actions.c \
 		person/person.c \
 		person/person_utils.c \

@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/19 12:56:37 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:44:13 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ typedef struct s_state
 int		validate(int ac, char **av);
 t_state	*make_state(char **av);
 void	*free_state(t_state *state);
-void	print_state(t_state *state);
 
 #endif
