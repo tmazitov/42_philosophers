@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_utils.h                                       :+:      :+:    :+:   */
+/*   fork_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:10:34 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/02/15 13:12:55 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:13:01 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fork.h"
 
-void	print_fork(t_fork *fork)
+void	fork_print(t_fork *fork)
 {
 	printf("\t\tfork %d: \n", fork->id);
 }
