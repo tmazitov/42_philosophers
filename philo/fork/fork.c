@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:52:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 12:24:02 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:16:36 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	*free_fork(t_fork *fork)
 {
 	if (!fork)
 		return (NULL);
+	if (fork->locker_is_enabled)
+		pthread_mutex_unlock(&fork->locker);
 	if (fork->locker_is_created) 
 		pthread_mutex_destroy(&fork->locker);
 	free(fork);

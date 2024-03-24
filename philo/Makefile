@@ -3,7 +3,7 @@ NAME := philo
 GREEN := \033[0;32m
 NC := \033[0m
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror 
+CFLAGS := -Wall -Wextra -Werror
 
 SRCS := philo.c \
 		philo_state.c \
@@ -12,6 +12,8 @@ SRCS := philo.c \
 		fork/fork_lock.c \
 		fork/fork_utils.c \
 		fork/fork_storage.c \
+		fork/fork_storage_check.c \
+		fork/fork_storage_lock.c \
 		fork/fork_storage_actions.c \
 		person/person.c \
 		person/person_utils.c \

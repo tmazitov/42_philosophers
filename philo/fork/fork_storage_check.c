@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_usleep.c                                        :+:      :+:    :+:   */
+/*   fork_storage_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 16:31:55 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/21 18:22:48 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/03/21 14:20:34 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/03/21 16:40:35 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "fork.h"
 
-size_t	now(void)
+t_bool	fs_check_fork_pair(t_fork_storage *storage, int id_1, int id_2)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
-	return (time.tv_sec * (size_t)1000 + time.tv_usec / (size_t)1000);
-}
-
-int	ft_usleep(size_t milliseconds)
-{
-	size_t	start;
-
-	start = now();
-	while ((now() - start) < milliseconds)
-		usleep(500);
-	return (0);
-}
-
-int	diff(size_t t1, size_t t2)
-{
-	return ((int)(t1 - t2));
+		return ((storage->free_forks[id_1 - 1] && 
+			storage->free_forks[id_2 - 1]));
 }

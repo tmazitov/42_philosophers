@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 18:34:46 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:21:22 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_person
 	int				sleep_dur;
 	int				die_time;
 	int				created_at;
-	int				last_eat;
+	size_t			last_eat;
 	int				eat_count;
 	int				eat_limit;
 	size_t			start;
