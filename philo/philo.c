@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 16:34:04 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:01:18 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	run_philosophers(t_state *state)
 	t_person	**persons;
 	t_person	*p;
 	int			counter;
+	pthread_t	checker_id;
 
 	counter = 0;
 	persons = state->persons->persons;
@@ -35,6 +36,7 @@ static void	run_philosophers(t_state *state)
 		pthread_create(&p->thread_id, NULL, person_behavior, p);
 		counter++;
 	}
+	pthread_create(&checker_id, NULL, run_person_checker, state->persons);
 	counter = 0;
 	while (persons[counter])
 	{
@@ -42,7 +44,7 @@ static void	run_philosophers(t_state *state)
 		pthread_join(p->thread_id, NULL);
 		counter++;
 	}
-	
+	pthread_join(checker_id, NULL);
 }
 
 int	main(int ac, char **av)

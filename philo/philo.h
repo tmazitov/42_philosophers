@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:04 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 14:44:13 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:57:01 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "./utils/utils.h"
 # include "./person/person.h"
 # include "./fork/fork.h"
+# include "./checker/checker.h"
 
 typedef struct s_state
 {

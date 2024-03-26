@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/20 15:36:08 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:09:03 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 static void	init_person_storage(t_person_storage *storage)
 {
 	storage->locker_is_created = false;
-	storage->locker_is_enabled = false;
 	storage->persons = NULL;
-	storage->dead_log = false;
+	storage->dead_log = 0;
 	storage->start = now();
 }
 
@@ -25,7 +24,7 @@ t_person_storage	*make_person_storage(int amount)
 {
 	t_person_storage	*storage;
 	int					counter;
-
+	
 	storage = malloc(sizeof(t_person_storage));
 	if (!storage)
 		return (NULL);
@@ -54,6 +53,8 @@ void	*free_person_storage(t_person_storage *storage)
 
 	if (!storage)
 		return (NULL);
+	if (storage->locker_is_enabled)
+		ps_unlock(storage);
 	if (storage->locker_is_created)
 		pthread_mutex_destroy(&storage->locker);
 	if (storage->persons)

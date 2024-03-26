@@ -4,7 +4,6 @@ GREEN := \033[0;32m
 NC := \033[0m
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
-
 SRCS := philo.c \
 		philo_state.c \
 		philo_validation.c \
@@ -12,11 +11,11 @@ SRCS := philo.c \
 		fork/fork_lock.c \
 		fork/fork_utils.c \
 		fork/fork_storage.c \
-		fork/fork_storage_check.c \
-		fork/fork_storage_lock.c \
 		fork/fork_storage_actions.c \
+		checker/checker.c \
 		person/person.c \
 		person/person_utils.c \
+		person/person_last_meal.c \
 		person/person_behavior.c \
 		person/person_storage.c \
 		person/person_storage_dead.c \

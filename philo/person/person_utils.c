@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:09:05 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/21 18:33:32 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:45:02 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ int	print_person_state(t_person *person, t_person_state state)
 		message = "has taken a fork";
 	else
 		return (0);
-	if (ps_death_check(person) && state != DIE)
-		return (1);
 	storage = (t_person_storage*)person->storage;
-	pthread_mutex_lock(&storage->locker);
+	ps_lock(storage);
+	if (storage->dead_log)
+		return (ps_unlock(storage), 1);	
 	time = now() - storage->start;
-	if (storage->dead_log && state != DIE)
-		return (pthread_mutex_unlock(&storage->locker), 1);
 	printf("%li %d %s\n", time, person->id, message);
-	pthread_mutex_unlock(&storage->locker);
+	ps_unlock(storage);
 	return (0);
 }

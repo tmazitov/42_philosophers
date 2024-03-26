@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_storage_lock.c                                :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 14:18:02 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/21 18:37:27 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/03/25 17:42:15 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/03/25 17:56:07 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fork.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-int	fs_lock(t_fork_storage *storage)
-{
-	pthread_mutex_lock(&storage->locker);
-	storage->locker_is_enabled = true;
-	return (0);
-}
+# include "../utils/utils.h"
+# include "../person/person.h"
 
-int	fs_unlock(t_fork_storage *storage)
-{	
-	storage->locker_is_enabled = false;
-	return pthread_mutex_unlock(&storage->locker);
-}
+void	*run_person_checker(void *data);
+
+#endif // !CHECKER_H

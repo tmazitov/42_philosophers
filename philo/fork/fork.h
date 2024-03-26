@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/21 17:52:14 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:06:31 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,16 @@ typedef struct s_fork_storage
 {
 	t_fork			**forks;
 	int				amount;
-	t_bool			*free_forks;
 	pthread_mutex_t	locker;
 	t_bool			locker_is_created;
-	t_bool			locker_is_enabled;
 }		t_fork_storage;
 
 // Fork storage	
 
 t_fork_storage	*make_fork_storage(int amount);
 void			*free_fork_storage(t_fork_storage *storage);
-void			fs_put_pair(t_fork_storage *storage, t_fork_pair pair);
+void			fs_put_pair(t_fork_pair pair);
 t_fork			*fs_take_fork(t_fork_storage *storage, int fork_id);
-t_bool			fs_check_fork(t_fork_storage *storage, int fork_id);
-int				fs_lock(t_fork_storage *storage);
-int				fs_unlock(t_fork_storage *storage);
-t_bool	fs_check_fork_pair(t_fork_storage *storage, int id_1, int id_2);
 
 // Fork
 
