@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:43:24 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:49:34 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	run_philosophers(t_state *state)
 	while (persons[counter])
 	{
 		p = persons[counter];
+		set_person_meal(p);
 		pthread_create(&p->thread_id, NULL, person_behavior, p);
 		counter++;
 	}

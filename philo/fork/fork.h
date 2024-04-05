@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:42:03 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 13:04:07 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:51:45 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_fork_storage
 t_fork_storage	*make_fork_storage(int amount);
 void			*free_fork_storage(t_fork_storage *storage);
 void			fs_put_pair(int id, t_fork_storage *storage, t_fork_pair pair);
-t_bool			fs_check_fork(t_fork_storage *storage, int fork_id, int id);
+t_bool			fork_is_mine(t_fork_storage *storage, int fork_id, int id);
 t_fork			*fs_take_fork(t_fork_storage *storage, int fork_id);
 void			fs_lock(t_fork_storage *storage);
 void			fs_unlock(t_fork_storage *storage);

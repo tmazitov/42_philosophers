@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:17:21 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:21:41 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:51:42 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	person_wait_pair(t_person *person, t_fork_storage *forks)
 	left_fork_id = left_id(person, forks);
 	right_fork_id = right_id(person, forks);
 	fs_lock(forks);
-	if (fs_check_fork(forks, right_fork_id, person->id) 
-		|| fs_check_fork(forks, left_fork_id, person->id))
+	if (fork_is_mine(forks, right_fork_id, person->id) 
+		|| fork_is_mine(forks, left_fork_id, person->id))
 		return (fs_unlock(forks), 1);
 	fs_unlock(forks);
 	if (forks->amount % 2 != 0 && person->id == forks->amount)

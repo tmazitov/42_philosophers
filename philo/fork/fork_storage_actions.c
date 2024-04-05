@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 12:58:50 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 13:04:27 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:51:32 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_fork	*fs_take_fork(t_fork_storage *storage, int fork_id)
 	return (take_fork(result_fork));
 }
 
-t_bool	fs_check_fork(t_fork_storage *storage, int fork_id, int id)
+t_bool	fork_is_mine(t_fork_storage *storage, int fork_id, int id)
 {
 	t_fork	*result_fork;
 	int		counter;
