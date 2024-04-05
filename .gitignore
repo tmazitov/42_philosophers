@@ -1,1 +1,6 @@
 *.o
+socrates
+./philo/philo
+.vscode
+.vscode/settings.json
+./philo/philo
