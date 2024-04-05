@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   person_storage_dead.c                              :+:      :+:    :+:   */
+/*   fork_storage_lock.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 13:47:42 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 17:08:21 by tmazitov         ###   ########.fr       */
+/*   Created: 2024/04/02 15:12:38 by tmazitov          #+#    #+#             */
+/*   Updated: 2024/04/05 13:02:17 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "person.h"
+#include "fork.h"
 
-
-void	ps_death_set(t_person *person)
+void	fs_lock(t_fork_storage *storage)
 {
-	t_fork_storage		*storage_fork;
-	t_fork				*fork;
-	int					counter;
-	
-	storage_fork = person->fork_storage;
-	counter = 0;
-	while(storage_fork->forks[counter])
-	{
-		fork = storage_fork->forks[counter]; 
-		if (fork->locker_is_enabled)
-			fork_unlock(fork);
-		counter++;
-	}
+	pthread_mutex_lock(&storage->locker);
 }
-	
+
+void	fs_unlock(t_fork_storage *storage)
+{
+	pthread_mutex_unlock(&storage->locker);
+}

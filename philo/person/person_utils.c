@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:09:05 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 16:45:02 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:59:26 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_person(t_person *person)
 int	print_person_state(t_person *person, t_person_state state)
 {
 	char				*message;
-	size_t				time;
+	long long			time;
 	t_person_storage	*storage;
 
 	if (state == SLEEPING)
@@ -35,12 +35,12 @@ int	print_person_state(t_person *person, t_person_state state)
 		message = "has taken a fork";
 	else
 		return (0);
-	storage = (t_person_storage*)person->storage;
+	storage = (t_person_storage *)person->storage;
 	ps_lock(storage);
 	if (storage->dead_log)
-		return (ps_unlock(storage), 1);	
+		return (ps_unlock(storage), 1);
 	time = now() - storage->start;
-	printf("%li %d %s\n", time, person->id, message);
+	printf("%lli %d %s\n", time, person->id, message);
 	ps_unlock(storage);
 	return (0);
 }

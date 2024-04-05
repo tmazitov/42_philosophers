@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 17:09:03 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:00:22 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_person_storage	*make_person_storage(int amount)
 {
 	t_person_storage	*storage;
 	int					counter;
-	
+
 	storage = malloc(sizeof(t_person_storage));
 	if (!storage)
 		return (NULL);

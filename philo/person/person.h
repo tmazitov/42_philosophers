@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 17:06:54 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:14:46 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ typedef struct s_person
 	int				die_time;
 	int				eat_count;
 	int				eat_limit;
-	size_t			last_meal;
-	size_t			start;
+	long long		last_meal;
 	void			*storage;
 	t_fork_storage	*fork_storage;
 	pthread_mutex_t	locker;
@@ -66,7 +65,7 @@ typedef struct s_person_storage
 	t_bool			locker_is_created;
 	t_bool			locker_is_enabled;
 	int				dead_log;
-	size_t			start;
+	long long		start;
 }		t_person_storage;
 
 // Person
@@ -79,15 +78,17 @@ void				set_time(t_person_storage *storage, t_person_time time);
 void				set_forks(t_person_storage *storage, t_fork_storage *forks);
 void				*person_behavior(void *data);
 void				set_person_meal(t_person *person);
-size_t				get_person_meal(t_person *person);
+long long			get_person_meal(t_person *person);
 void				person_meal_lock(t_person *person);
 void				person_meal_unlock(t_person *person);
+int					is_not_ok(t_person *person);
+int					person_wait(t_person *person, t_person_state state);
+int					person_wait_pair(t_person *person, t_fork_storage *forks);
+t_person			*person_relise_pair(t_person *p, t_fork_storage *forks);
 
 // Person Storage
-
 t_person_storage	*make_person_storage(int amount);
 void				*free_person_storage(t_person_storage *storage);
-void				ps_death_set(t_person *person);
 void				ps_lock(t_person_storage *storage);
 void				ps_unlock(t_person_storage *storage);
 

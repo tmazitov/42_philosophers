@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:41:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 16:57:33 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:21:08 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	init_person(t_person *person)
 	person->die_time = 0;
 	person->eat_count = 0;
 	person->eat_limit = -1;
-	person->start = 0;
 	person->storage = NULL;
 	person->locker_is_created = false;
 }
@@ -45,6 +44,8 @@ void	*free_person(t_person *person)
 {
 	if (!person)
 		return (NULL);
+	if (person->locker_is_enabled)
+		person_meal_unlock(person);
 	if (person->locker_is_created)
 		pthread_mutex_destroy(&person->locker);
 	free(person);

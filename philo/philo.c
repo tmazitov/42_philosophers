@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:21:31 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/25 18:01:18 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:43:24 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	run_philosophers(t_state *state)
 		counter++;
 	}
 	pthread_create(&checker_id, NULL, run_person_checker, state->persons);
+	pthread_join(checker_id, NULL);
 	counter = 0;
 	while (persons[counter])
 	{
@@ -44,7 +45,6 @@ static void	run_philosophers(t_state *state)
 		pthread_join(p->thread_id, NULL);
 		counter++;
 	}
-	pthread_join(checker_id, NULL);
 }
 
 int	main(int ac, char **av)
@@ -52,6 +52,8 @@ int	main(int ac, char **av)
 	t_state			*state;
 	t_person_time	time;
 
+	if (ac < 5 || ac > 6)
+		return (panic("expected 4 parameters"));
 	if (validate(ac, av))
 		return (panic("arguments validation failed"));
 	state = make_state(av);

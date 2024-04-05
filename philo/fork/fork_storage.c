@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/03/26 17:03:15 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:20:37 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	feel_storage(t_fork_storage *storage)
 	return (1);
 }
 
-
 t_fork_storage	*make_fork_storage(int amount)
 {
 	t_fork_storage	*storage;
@@ -40,6 +39,11 @@ t_fork_storage	*make_fork_storage(int amount)
 	if (!storage)
 		return (NULL);
 	storage->amount = amount;
+	storage->locker_is_created = false;
+	if (pthread_mutex_init(&storage->locker, NULL) != 0)
+		return (free_fork_storage(storage));
+	storage->locker_is_created = true;
+	storage->locker_is_enabled = false;
 	if (!feel_storage(storage))
 		return (free_fork_storage(storage));
 	return (storage);
@@ -51,6 +55,10 @@ void	*free_fork_storage(t_fork_storage *storage)
 
 	if (!storage)
 		return (NULL);
+	if (storage->locker_is_enabled)
+		fs_unlock(storage);
+	if (storage->locker_is_created)
+		pthread_mutex_destroy(&storage->locker);
 	if (storage->forks)
 	{
 		counter = 0;
