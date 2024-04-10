@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:43:16 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:14:46 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:36:05 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void				set_person_meal(t_person *person);
 long long			get_person_meal(t_person *person);
 void				person_meal_lock(t_person *person);
 void				person_meal_unlock(t_person *person);
-int					is_not_ok(t_person *person);
+int					is_someone_died(t_person *person);
 int					person_wait(t_person *person, t_person_state state);
 int					person_wait_pair(t_person *person, t_fork_storage *forks);
 t_person			*person_relise_pair(t_person *p, t_fork_storage *forks);

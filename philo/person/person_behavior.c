@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:02:13 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:49:13 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:52:37 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_person	*person_sleep(t_person *person)
 	return (NULL);
 }
 
-int	is_not_ok(t_person *person)
+int	is_someone_died(t_person *person)
 {
 	int					value;
 	t_person_storage	*storage;
@@ -74,11 +74,11 @@ void	*person_behavior(void *data)
 		person_wait(person, EATING);
 	while (true)
 	{
-		if (is_not_ok(person))
+		if (is_someone_died(person))
 			break ;
-		if (person_eat(person, forks))
+		if (person->eat_limit != -1 && person->eat_count >= person->eat_limit)
 			return (NULL);
-		if (person->eat_limit != -1 && person->eat_count > person->eat_limit)
+		if (person_eat(person, forks))
 			return (NULL);
 		if (person_sleep(person))
 			return (NULL);

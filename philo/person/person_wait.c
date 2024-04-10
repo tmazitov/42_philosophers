@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:17:21 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:51:42 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:36:02 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	person_waiter(t_person *person, int time)
 	while (diff(now(), start) < time)
 	{
 		usleep(100);
-		if (is_not_ok(person))
+		if (is_someone_died(person))
 			return (1);
 	}
 	return (0);

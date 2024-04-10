@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:41:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 13:21:08 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:52:42 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_person(t_person *person)
 	person->eat_dur = 0;
 	person->sleep_dur = 0;
 	person->die_time = 0;
-	person->eat_count = 0;
+	person->eat_count = -2;
 	person->eat_limit = -1;
 	person->storage = NULL;
 	person->locker_is_created = false;
