@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:41:56 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/10 12:52:42 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:41:18 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	init_person(t_person *person)
 	person->eat_limit = -1;
 	person->storage = NULL;
 	person->locker_is_created = false;
+	person->locker_is_enabled = false;
 }
 
 t_person	*make_person(int id)

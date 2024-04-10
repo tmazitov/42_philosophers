@@ -6,7 +6,7 @@
 /*   By: tmazitov <tmazitov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:02:20 by tmazitov          #+#    #+#             */
-/*   Updated: 2024/04/05 13:00:22 by tmazitov         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:48:05 by tmazitov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_person_storage(t_person_storage *storage)
 {
 	storage->locker_is_created = false;
+	storage->locker_is_enabled = false;
 	storage->persons = NULL;
 	storage->dead_log = 0;
 	storage->start = now();
